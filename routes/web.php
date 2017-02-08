@@ -11,6 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Link principal
+Route::get('/',function(){
+    return redirect('inicio');
 });
+
+Route::get('/{pagina}','NavegacionController@Usuario');
