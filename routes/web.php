@@ -17,3 +17,7 @@ Route::get('/',function(){
 });
 
 Route::get('/{pagina}','NavegacionController@Usuario');
+
+Route::get('tema/usuario',function(){
+    return view('tema.usuario');
+});
