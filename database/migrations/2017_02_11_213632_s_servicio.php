@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class SImagen extends Migration
+class SServicio extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class SImagen extends Migration
      */
     public function up()
     {
-        Schema::create('s_imagen', function (Blueprint $table) {
+        Schema::create('s_servicio', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
+            $table->string('nombre',100);
+            $table->string('icono',100);
+            $table->boolean('estado');
         });
     }
 
@@ -26,6 +28,6 @@ class SImagen extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('s_imagen');
+        Schema::dropIfExists('s_servicio');
     }
 }
