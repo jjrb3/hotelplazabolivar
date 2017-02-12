@@ -6,12 +6,10 @@ function verificarIngreso(id,estado) {
         type: 'post',
         data: {
             usuario:$("#usuario").val(),
-            clave:$("#clave").val()
+            clave:$("#clave").val(),
         },
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-            usuario:$("#usuario").val(),
-            clave:$("#clave").val()
         },
         dataType: 'json',
         success: function (data) {

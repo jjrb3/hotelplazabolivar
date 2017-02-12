@@ -1,23 +1,25 @@
 // Script por Stids S.A.S
 
-$.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-});
+$('#fomrUsuario').submit(function(){
 
-$(document).ready(function(){
-
-    $('#fomrUsuario').submit(function(){
-
-        $("#mensaje").html('<center><img src="'+$("#ruta").val()+'tema/images/cargando.gif" width="50px"></center>');
-
-
-        $.post('inicio/registrar',{   usuario:$("#usuario").val(),
-                                            clave:$("#clave").val(),
-                                            nombres:$("#nombres").val(),
-                                            apellidos:$("#apellidos").val(),
-                                            email:$("#email").val()},function(data){
+    $.ajax({
+        url: 'inicio/registrar',
+        type: 'post',
+        data: {
+            usuario:$("#usuario").val(),
+            clave:$("#clave").val(),
+            nombres:$("#nombres").val(),
+            apellidos:$("#apellidos").val(),
+            email:$("#email").val(),
+        },
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+        },
+        beforeSend: function(){
+            $("#mensaje").html('<center><img src="'+$("#ruta").val()+'tema/images/cargando.gif" width="50px"></center>');
+        },
+        dataType: 'json',
+        success: function (data) {
 
             switch(data.resultado) {
                 case 1:
@@ -32,7 +34,10 @@ $(document).ready(function(){
                     mensajeError("mensaje", data.mensaje);
                     break;
             }
-        },'json');
+        },
+        error: function(result) {
+            mensajeError("mensaje", 'Se encontraron errores al momento de procesar la solicitud');
+        }
     });
 });
 
@@ -52,9 +57,18 @@ function habilitar(id) {
 
 function confirmarDeshabilitar(id,estado) {
 
-    $(document).ready(function () {
-        $.post('inicio/deshabilitar',{id:id,estado:estado}, function (data) {
-
+    $.ajax({
+        url: 'inicio/deshabilitar',
+        type: 'post',
+        data: {
+            id:id,
+            estado:estado,
+        },
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+        },
+        dataType: 'json',
+        success: function (data) {
             switch (data.resultado) {
                 case 1:
                     mensajeRealizado("mensaje", data.mensaje);
@@ -68,23 +82,34 @@ function confirmarDeshabilitar(id,estado) {
                     mensajeError("mensaje", data.mensaje);
                     break;
             }
-        },'json');
+        },
+        error: function(result) {
+            mensajeError("mensaje", 'Se encontraron errores al momento de procesar la solicitud');
+        }
     });
 }
 
 function actualizar() {
 
-    $(document).ready(function () {
-
-        $("#mensaje").html('<center><img src="' + $("#ruta").val() + 'tema/images/cargando.gif" width="50px"></center>');
-
-        $.post('inicio/actualizar',{id: $("#usuarioId").val(),
-                                    usuario: $("#usuarioActualizar").val(),
-                                    clave: $("#claveActualizar").val(),
-                                    nombres: $("#nombresActualizar").val(),
-                                    apellidos: $("#apellidosActualizar").val(),
-                                    email: $("#emailActualizar").val()
-                                    }, function (data) {
+    $.ajax({
+        url: 'inicio/actualizar',
+        type: 'post',
+        data: {
+            id: $("#usuarioId").val(),
+            usuario: $("#usuarioActualizar").val(),
+            clave: $("#claveActualizar").val(),
+            nombres: $("#nombresActualizar").val(),
+            apellidos: $("#apellidosActualizar").val(),
+            email: $("#emailActualizar").val(),
+        },
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+        },
+        dataType: 'json',
+        beforeSend: function(){
+            $("#mensaje").html('<center><img src="' + $("#ruta").val() + 'tema/images/cargando.gif" width="50px"></center>');
+        },
+        success: function (data) {
 
             switch (data.resultado) {
                 case 1:
@@ -99,7 +124,10 @@ function actualizar() {
                     mensajeError("mensaje", data.mensaje);
                     break;
             }
-        },'json');
+        },
+        error: function(result) {
+            mensajeError("mensaje", 'Se encontraron errores al momento de procesar la solicitud');
+        }
     });
 }
 
@@ -117,9 +145,20 @@ function volver() {
 
 function formularioActualizar(id) {
 
-    $(document).ready(function(){
-        $("#fomrUsuario").slideUp(500,function(){
-            $.post('inicio/buscar/id',{id:id},function(data){
+    $("#fomrUsuario").slideUp(500,function(){
+        $.ajax({
+            url: 'inicio/buscar/id',
+            type: 'post',
+            data: {
+                id:id,
+            },
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+            },
+            dataType: 'json',
+            beforeSend: function(){},
+            success: function (data) {
+
                 switch(data.resultado) {
                     case 1:
                         $("#usuarioId").val(data.json[0].id);
@@ -136,19 +175,29 @@ function formularioActualizar(id) {
                         mensajeError("mensaje", data.mensaje);
                         break;
                 }
-            },'json');
-            $("#fomrUsuarioActualizar").slideDown(500);
+            },
+            error: function(result) {
+                mensajeError("mensaje", 'Se encontraron errores al momento de procesar la solicitud');
+            }
         });
+        $("#fomrUsuarioActualizar").slideDown(500);
     });
 }
 
 function buscarUsuario() {
 
-    $(document).ready(function(){
-
-        $("#tabla").html('<center><img src="'+$("#ruta").val()+'tema/images/cargando.gif" width="50px"></center>');
-
-        $.post('inicio/buscar',{},function(data){
+    $.ajax({
+        url: 'inicio/buscar',
+        type: 'post',
+        data: {},
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+        },
+        dataType: 'json',
+        beforeSend: function(){
+            $("#tabla").html('<center><img src="'+$("#ruta").val()+'tema/images/cargando.gif" width="50px"></center>');
+        },
+        success: function (data) {
 
             switch(data.resultado) {
                 case 1:
@@ -193,6 +242,9 @@ function buscarUsuario() {
                     mensajeError("tabla", data.mensaje);
                     break;
             }
-        },'json');
+        },
+        error: function(result) {
+            mensajeError("mensaje", 'Se encontraron errores al momento de procesar la solicitud');
+        }
     });
 }

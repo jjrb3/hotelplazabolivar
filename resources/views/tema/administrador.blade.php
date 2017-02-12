@@ -14,6 +14,8 @@
 	<link href="{{asset('tema/fonts/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
     <link href="{{asset('tema/css/theme.css')}}" rel="stylesheet">
      <link href="{{asset('tema/css/administrador.css')}}" rel="stylesheet">
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script type="text/javascript" src="{{asset('js/script.js')}}"></script>
 </head>
 <body>
 <nav class="navbar navbar-inverse">
@@ -27,8 +29,8 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Hola Alvaro</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Salir</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Hola, {{$nombres}}</a></li>
+        <li><a href="{{asset('administrador/cerrarSession')}}"><span class="glyphicon glyphicon-log-in"></span> Salir</a></li>
       </ul>
     </div>
   </div>

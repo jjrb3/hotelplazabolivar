@@ -79,6 +79,7 @@ class UsuarioController extends Controller
         $usuario->nombres = $request->get('nombres');
         $usuario->apellidos = $request->get('apellidos');
         $usuario->correo = $request->get('email');
+        $usuario->estado = 1;
 
         try {
             if ($usuario->save()) {
@@ -165,7 +166,7 @@ class UsuarioController extends Controller
     public function ConsultarUsuario()
     {
         try {
-            $Usuario = Usuario::whereNotIn('id', [1,2])
+            $Usuario = Usuario::whereNotIn('id', [1,2,3])
                 ->orderBy('estado', 'DESC')
                 ->orderBy('usuario', 'ASC')->get();
 
