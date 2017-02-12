@@ -19,7 +19,6 @@ class SImagen extends Migration
             $table->string('ruta',50);
             $table->integer('valor');
             $table->foreign('id_habitacion')->references('id')->on('s_habitacion');
-            $table->timestamps();
         });
     }
 

@@ -19,7 +19,6 @@ class SHabitacionServicio extends Migration
             $table->integer('id_servicio')->unsigned();
             $table->foreign('id_habitacion')->references('id')->on('s_habitacion');
             $table->foreign('id_servicio')->references('id')->on('s_servicio');
-            $table->timestamps();
         });
     }
 

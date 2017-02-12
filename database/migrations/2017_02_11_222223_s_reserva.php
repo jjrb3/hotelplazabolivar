@@ -25,7 +25,6 @@ class SReserva extends Migration
             $table->date('fecha_fin');
             $table->foreign('id_titulo')->references('id')->on('s_titulo');
             $table->foreign('id_habitacion')->references('id')->on('s_habitacion');
-            $table->timestamps();
         });
     }
 
