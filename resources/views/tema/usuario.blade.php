@@ -128,7 +128,7 @@
 <script src="{{asset('tema/js/jquery.mixitup.min.js')}}"></script>
 <link href="{{asset('tema/css/magnific-popup.css')}}" rel="stylesheet">
 <script src="{{asset('tema/js/jquery.magnific-popup.min.js')}}"></script>
-<script src="{{asset('tema/js/theme.js"></script>
+<script src="{{asset('tema/js/theme.js"></script>')}}"></script>
 <script src="https://maps.googleapis.com/maps/api/js"></script>
 
 <script type="text/javascript">

@@ -46,14 +46,14 @@ Route::post('/administrador/usuario/inicio/deshabilitar','UsuarioController@Desh
 // Sesion de información
 Route::post('/administrador/informacion/inicio/actualizar','InformacionPaginaController@ActualizarInformacionPagina');
 
-// Sesion de bienes e inmuebles
-Route::post('/administrador/bienesInmuebles/inicio/buscar','InmuebleController@Consultar');
-Route::post('/administrador/bienesInmuebles/inicio/buscar/id','InmuebleController@ConsultarId');
-Route::post('/administrador/bienesInmuebles/inicio/registrar','InmuebleController@Guardar');
-Route::post('/administrador/bienesInmuebles/inicio/actualizar','InmuebleController@Actualizar');
-Route::post('/administrador/bienesInmuebles/inicio/deshabilitar','InmuebleController@Deshabilitar');
-Route::get('/administrador/bienesInmuebles/inicio/buscador','InmuebleController@Buscador');
+// Sesion de habitacion
+Route::post('/administrador/habitacion/inicio/buscar','HabitacionController@Consultar');
+Route::post('/administrador/habitacion/inicio/buscar/id','HabitacionController@ConsultarId');
+Route::post('/administrador/habitacion/inicio/registrar','HabitacionController@Guardar');
+Route::post('/administrador/habitacion/inicio/actualizar','HabitacionController@Actualizar');
+Route::post('/administrador/habitacion/inicio/deshabilitar','HabitacionController@Deshabilitar');
+Route::get('/administrador/habitacion/inicio/buscador','HabitacionController@Buscador');
 
-Route::post('/administrador/bienesInmuebles/imagenes/guardar','ImagenController@Guardar');
-Route::post('/administrador/bienesInmuebles/imagenes/buscar','ImagenController@Consultar');
-Route::post('/administrador/bienesInmuebles/imagenes/eliminar','ImagenController@Eliminar');
+Route::post('/administrador/habitacion/imagenes/guardar','ImagenController@Guardar');
+Route::post('/administrador/habitacion/imagenes/buscar','ImagenController@Consultar');
+Route::post('/administrador/habitacion/imagenes/eliminar','ImagenController@Eliminar');

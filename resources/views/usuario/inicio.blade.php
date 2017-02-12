@@ -44,7 +44,6 @@
                 <!-- Actualizar -->
                 <div class="form-horizontal"  id="fomrUsuarioActualizar" style="display: none;">
                     <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
-                    <input type="hidden" id="ruta" value="{{asset('')}}">
                     <input type="hidden" id="usuarioId" value="">
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="email">Usuarios:</label>

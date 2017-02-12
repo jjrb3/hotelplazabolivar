@@ -1,12 +1,5 @@
 // Script por Stids S.A.S
 
-$.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-});
-
-
 function guardar() {
 
     $(document).ready(function(){
@@ -14,7 +7,6 @@ function guardar() {
         var imagen = $("#archivo").val();
 
         if (imagen) {
-
             // Toma lo que contenga el formulario
             var formData = new FormData($("#imagen")[0]);
 
@@ -22,6 +14,9 @@ function guardar() {
                 url: 'imagenes/guardar',	// A que archivo se envian los datos
                 type: 'POST',					// metodo POST
                 data: formData,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                },
                 cache: false,
                 contentType: false,
                 processData: false,
@@ -48,13 +43,25 @@ function eliminar(id,ruta) {
 
     var botonSi = '<span onclick="confirmarEliminar('+id+',\''+ruta+'\')" style="cursor:pointer"><strong>AQUÍ</strong></span>';
 
-    mensajeInformacion('mensaje','Si esta seguro que desea eliminar esta imagen presione '+botonSi);
+    mensajeAdvertencia('mensaje','Si esta seguro que desea eliminar esta imagen presione '+botonSi);
 }
 
-function confirmarEliminar(id,ruta) {
+function confirmarEliminar(id) {
 
-    $(document).ready(function () {
-        $.post('imagenes/eliminar',{id:id,ruta:ruta}, function (data) {
+    $.ajax({
+        url: 'imagenes/eliminar',
+        type: 'post',
+        data: {
+            id:id
+        },
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+        },
+        dataType: 'json',
+        beforeSend: function(){
+            $("#galeria").html('<center><img src="'+$("#ruta").val()+'tema/images/cargando.gif" width="50px"></center>');
+        },
+        success: function (data) {
 
             switch (data.resultado) {
                 case 1:
@@ -68,17 +75,29 @@ function confirmarEliminar(id,ruta) {
                     mensajeError("mensaje", data.mensaje);
                     break;
             }
-        },'json');
+        },
+        error: function(result) {
+            mensajeError("tabla", 'Se encontraron errores al momento de procesar la solicitud');
+        }
     });
 }
 
 function buscar() {
 
-    $(document).ready(function(){
-
-        $("#galeria").html('<center><img src="'+$("#ruta").val()+'tema/images/cargando.gif" width="50px"></center>');
-
-        $.post('imagenes/buscar',{id:$("#id").val()},function(data){
+    $.ajax({
+        url: 'imagenes/buscar',
+        type: 'post',
+        data: {
+            id:$("#id").val(),
+        },
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+        },
+        dataType: 'json',
+        beforeSend: function(){
+            $("#galeria").html('<center><img src="'+$("#ruta").val()+'tema/images/cargando.gif" width="50px"></center>');
+        },
+        success: function (data) {
 
             switch(data.resultado) {
                 case 1:
@@ -89,10 +108,10 @@ function buscar() {
                     jQuery.each(data.json, function(i, val) {
 
                         tabla = '<div class="col-sm-4"> <div class="panel panel-primary">';
-                        tabla += '<div class="panel-heading">Imagen</div>';
+                        tabla += '<div class="panel-heading" style="background-color: #e86850">Imagen</div>';
                         tabla += '<div class="panel-body">';
-                        tabla += '<img src="'+$("#ruta").val()+'recursos/imagen_inmueble/'+val.ruta+'" style="width:300px;height:300px">'
-                        tabla += '<br><br><button onclick="eliminar('+val.id_inmueble+',\''+val.ruta+'\')" class="btn btn-danger">Eliminar</button>';
+                        tabla += '<img src="'+$("#ruta").val()+'recursos/imagen_habitacion/'+val.ruta+'" style="width:300px;height:300px">'
+                        tabla += '<br><br><button onclick="eliminar('+val.id+')" class="btn btn-danger">Eliminar</button>';
                         tabla += '</div></div>';
 
                         $('#galeria').append(tabla);
@@ -105,6 +124,9 @@ function buscar() {
                     mensajeError("galeria", data.mensaje);
                     break;
             }
-        },'json');
+        },
+        error: function(result) {
+            mensajeError("tabla", 'Se encontraron errores al momento de procesar la solicitud');
+        }
     });
 }

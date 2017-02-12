@@ -39,14 +39,14 @@
 
   @yield('content')
 
-
+<input type="hidden" id="ruta" value="{{asset('')}}">
 <script src="{{asset('tema/js/jquery.min.js')}}"></script>
 <script src="{{asset('tema/bootstrap/js/bootstrap.min.js')}}"></script>
-<script src="j{{asset('tema/s/jquery.mixitup.min.js')}}"></script>
+<script src="{{asset('tema/s/jquery.mixitup.min.js')}}"></script>
 <link href="{{asset('tema/css/magnific-popup.css')}}" rel="stylesheet">
 <script src="{{asset('tema/js/jquery.magnific-popup.min.js')}}"></script>
 <script src="{{asset('tema/js/theme.js')}}"></script>
-<script src="https://maps.googleapis.com/maps/api/js')}}"></script>
+<script src="https://maps.googleapis.com/maps/api/js"></script>
 
 
 

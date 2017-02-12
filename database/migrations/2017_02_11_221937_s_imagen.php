@@ -17,7 +17,6 @@ class SImagen extends Migration
             $table->increments('id');
             $table->integer('id_habitacion')->unsigned();
             $table->string('ruta',50);
-            $table->integer('valor');
             $table->foreign('id_habitacion')->references('id')->on('s_habitacion');
         });
     }

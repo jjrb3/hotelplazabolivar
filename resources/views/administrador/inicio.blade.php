@@ -35,9 +35,9 @@
                     </div>
                 </a>
 
-                <a href="bienesInmuebles/inicio">
+                <a href="habitacion/inicio">
                     <div class="col-sm-4"> <div class="panel panel-red">
-                            <div class="panel-heading">BIENES & HABITACIONES</div>
+                            <div class="panel-heading">HABITACIONES</div>
                             <div class="panel-body">Para cambiar imagenes, estados y valores hacer click sobre este panel</div>
                         </div>
                     </div>

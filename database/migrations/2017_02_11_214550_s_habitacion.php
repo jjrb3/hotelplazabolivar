@@ -26,8 +26,8 @@ class SHabitacion extends Migration
             $table->integer('cantidad_menores');
             $table->time('hora_entrada');
             $table->time('hora_salida');
-            $table->string('latitud',100);
-            $table->string('altitud',100);
+            $table->string('latitud',100)->nullable();
+            $table->string('altitud',100)->nullable();
             $table->boolean('estado');
             $table->foreign('id_tipo_habitacion')->references('id')->on('s_tipo_habitacion');
         });
