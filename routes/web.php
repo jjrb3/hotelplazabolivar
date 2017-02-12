@@ -54,6 +54,12 @@ Route::post('/administrador/habitacion/inicio/actualizar','HabitacionController@
 Route::post('/administrador/habitacion/inicio/deshabilitar','HabitacionController@Deshabilitar');
 Route::get('/administrador/habitacion/inicio/buscador','HabitacionController@Buscador');
 
-Route::post('/administrador/habitacion/imagenes/guardar','ImagenController@Guardar');
+// Imagenes
 Route::post('/administrador/habitacion/imagenes/buscar','ImagenController@Consultar');
+Route::post('/administrador/habitacion/imagenes/guardar','ImagenController@Guardar');
 Route::post('/administrador/habitacion/imagenes/eliminar','ImagenController@Eliminar');
+
+// Servicios
+Route::post('/administrador/habitacion/servicios/buscar','HabitacionServicioController@Consultar');
+Route::post('/administrador/habitacion/servicios/guardar','HabitacionServicioController@Guardar');
+Route::post('/administrador/habitacion/servicios/eliminar','HabitacionServicioController@Eliminar');

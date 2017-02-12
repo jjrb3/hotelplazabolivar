@@ -176,7 +176,7 @@ function buscar(pagina) {
                     $('#tabla').html(tabla);   // Quitamos el cargando
 
                     // Titulo de la tabla
-                    tabla += '<div class="table-responsive"><table class="table"><thead><tr><th>Nombre</th><th>Valor</th><th>Descripción</th><th>Direccion</th><th>Hora Entrada</th><th>Hora Salida</th><th>Imagenes</th><th>Tipo de habitación</th><th>Opciones</th></tr></thead></div>';
+                    tabla += '<div class="table-responsive"><table class="table"><thead><tr><th>Nombre</th><th>Valor</th><th>Descripción</th><th>Direccion</th><th>Hora Entrada</th><th>Hora Salida</th><th>Imagenes</th><th>Tipo de habitación</th><th>Servicios</th><th>Opciones</th></tr></thead></div>';
 
                     // Datos de la tabla
                     jQuery.each(data.json.data, function(i, val) {
@@ -190,6 +190,7 @@ function buscar(pagina) {
                         tabla += '<td>'+val.hora_salida.substring(0, 5)+'</td>';
                         tabla += '<td><a href="imagenes?id='+val.id+'">Ver Imagenes</a></td>';
                         tabla += '<td>'+val.tipo_habitacion+'</td>';
+                        tabla += '<td><a href="servicios?id='+val.id+'">Ver Servicios</a></td>';
                         tabla += '<td><a href="actualizar?id='+val.id+'"><span class="glyphicon glyphicon glyphicon-pencil"></span></a>  / ';
                         tabla += '<a href="#" onclick="deshabilitar('+val.id+')"><span class="glyphicon glyphicon glyphicon-remove"></span></a></td>';
                         tabla += '</tr></tbody>';

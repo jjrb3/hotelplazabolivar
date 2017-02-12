@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\TipoHabitacion;
+use App\Servicio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -18,7 +19,8 @@ class NavegacionController extends Controller
             [
                 'nombres' => $request->session()->get('nombres'),
                 'informacionPagina' => InformacionPaginaController::ConsultarInformacionPagina(),
-                'tipoHabitacion' => TipoHabitacionController::Consultar()
+                'tipoHabitacion' => TipoHabitacionController::Consultar(),
+                'servicios' => ServicioController::Consultar()
             ]);
     }
 
