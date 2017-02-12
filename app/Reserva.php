@@ -4,8 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Imagen extends Model
+class Reserva extends Model
 {
     public $timestamps = false;
-    protected $table = "s_imagen";
+    protected $table = "s_reserva";
 }
