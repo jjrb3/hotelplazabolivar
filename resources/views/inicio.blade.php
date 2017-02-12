@@ -11,19 +11,19 @@
 	<!-- Wrapper for slides -->
 	<div class="carousel-inner" role="listbox">
 		<div class="item active">
-			<img src="tema/images/carousel1.jpg" alt="carousel1" style="width:100%" />
+			<img src="recursos/imagen_slider/1.jpg" style="width:100%" />
 			<div class="carousel-caption">
 				
 			</div>
 		</div>
 		<div class="item">
-			<img src="tema/images/carousel2.jpg" alt="carousel2" style="width:100%" />
+			<img src="recursos/imagen_slider/2.jpg" alt="carousel2" style="width:100%" />
 			<div class="carousel-caption">
 			
 			</div>
 		</div>
 		<div class="item">
-			<img src="tema/images/carousel3.jpg" alt="carousel3" style="width:100%">
+			<img src="recursos/imagen_slider/3.jpg" alt="carousel3" style="width:100%">
 			<div class="carousel-caption">
 				
 			</div>

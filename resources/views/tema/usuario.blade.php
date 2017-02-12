@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
+	<meta name="csrf-token" content="{{ csrf_token() }}" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -31,7 +32,7 @@
 		
 	  <!--header navbar LOGO -->
 		<div class="text-center" id="logo">
-			  <a href="#" ><img class="img-responsive" src="tema/images/logo.png" alt="logo"/></a>
+			  <a href="inicio" ><img class="img-responsive" src="tema/images/logo.png" alt="logo"/></a>
 		</div>
 	  <!-- TOOGLE MAIN NAVIGATION -->
 		<div class="navbar-header ">
