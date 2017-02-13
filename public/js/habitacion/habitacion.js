@@ -176,7 +176,7 @@ function buscar(pagina) {
                     $('#tabla').html(tabla);   // Quitamos el cargando
 
                     // Titulo de la tabla
-                    tabla += '<div class="table-responsive"><table class="table"><thead><tr><th>Nombre</th><th>Valor</th><th>Descripción</th><th>Direccion</th><th>Hora Entrada</th><th>Hora Salida</th><th>Imagenes</th><th>Tipo de habitación</th><th>Servicios</th><th>Opciones</th></tr></thead></div>';
+                    tabla += '<div class="table-responsive"><table class="table"><thead><tr><th>Nombre</th><th>Valor</th><th>Direccion</th><th>Hora Entrada</th><th>Hora Salida</th><th>Imagenes</th><th>Tipo de habitación</th><th>Servicios</th><th>Estado</th><th>Opciones</th></tr></thead></div>';
 
                     // Datos de la tabla
                     jQuery.each(data.json.data, function(i, val) {
@@ -184,13 +184,20 @@ function buscar(pagina) {
                         tabla += '<tbody><tr>';
                         tabla += '<td>'+val.nombre+'</td>';
                         tabla += '<td>$'+val.valor.toLocaleString()+'</td>';
-                        tabla += '<td><a href="actualizar?id='+val.id+'">Ver descripción</a></td>';
                         tabla += '<td>'+val.direccion+'</td>';
                         tabla += '<td>'+val.hora_entrada.substring(0, 5)+'</td>';
                         tabla += '<td>'+val.hora_salida.substring(0, 5)+'</td>';
                         tabla += '<td><a href="imagenes?id='+val.id+'">Ver Imagenes</a></td>';
                         tabla += '<td>'+val.tipo_habitacion+'</td>';
                         tabla += '<td><a href="servicios?id='+val.id+'">Ver Servicios</a></td>';
+
+                        if (val.estado == 1) {
+                            tabla += '<td>Activo</a>';
+                        }
+                        else {
+                            tabla += '<td>Inactivo</a>';
+                        }
+
                         tabla += '<td><a href="actualizar?id='+val.id+'"><span class="glyphicon glyphicon glyphicon-pencil"></span></a>  / ';
                         tabla += '<a href="#" onclick="deshabilitar('+val.id+')"><span class="glyphicon glyphicon glyphicon-remove"></span></a></td>';
                         tabla += '</tr></tbody>';

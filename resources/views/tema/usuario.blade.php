@@ -47,16 +47,15 @@
 		  <div class="container">
 
 		  <ul class="nav nav-justified nav-pills">
-			  <li class="active"><a href="inicio">Inicio</a></li>
+			  <li><a href="inicio">Inicio</a></li>
 			  <li><a href="nosotros">Nosotros</a></li>
 		  
 					<li class="dropdown">
 							<a class="dropdown-toggle" data-toggle="dropdown">Habitaciones<b class="caret"></b></a>
 							<ul class="dropdown-menu">
-								<li><a href="hsencillas">Habitaciones Sencillas</a></li>
-								<li><a href="hsemidobles">Habitaciones Sencillas Semi-Doble</a></li>
-								<li><a href="hfamiliares">Habitaciones Familiares</a></li>
-								<li><a href="hdobles">Habitación Doble</a></li>
+								@foreach ($tipoHabitacion as $lista)
+									<li><a href="habitaciones?tipoHabitacion={{$lista['id']}}">{{$lista['nombre']}}</a></li>
+								@endforeach
 							</ul>
 						</li>
 			  <li><a href="contacto">Contacto</a></li>
@@ -91,7 +90,7 @@
 					<div class="input-group">
 					<p style="color: white;"><span class="fa fa-globe"></span>&nbsp;&nbsp;&nbsp;calle 19#2.34 Barranquilla/Colombia</p>
 				<p style="color: white;"><span class="fa fa-phone"></span>&nbsp;&nbsp;&nbsp; 3049860 - (+57) 3148189755</p>
-				<p style="color: white;"><span class="fa fa-envelope"></span>&nbsp;&nbsp;&nbsp;<a style="color: white;"" href="mailto:mail@example.com">hplazabolivar@gmail.com</a></p>
+				<p style="color: white;"><span class="fa fa-envelope"></span>&nbsp;&nbsp;&nbsp;<a style="color: white;" href="mailto:mail@example.com">hplazabolivar@gmail.com</a></p>
 				</p>
 				<p><br /></p>
 				<p>

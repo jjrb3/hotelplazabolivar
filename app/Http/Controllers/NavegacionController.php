@@ -26,13 +26,26 @@ class NavegacionController extends Controller
 
     public function Usuario(Request $request,$pagina) {
 
-        //$inmueble = new InmuebleController();
+        $imagenSlider = array();
+
+        $directorio = opendir("recursos/imagen_slider");
+
+        while ($archivo = readdir($directorio))
+        {
+            if (!is_dir($archivo))
+            {
+                $imagenSlider[] = $archivo;
+            }
+        }
+
+        $habitacion = new HabitacionController();
 
         return View($pagina,
             [
-                /*'informacionPagina' => InformacionPaginaController::ConsultarInformacionPagina(),
-                'estadoInmueble' => EstadoInmuebleController::Consultar(),
-                'inmuebles' => $inmueble->Buscador($request),*/
+                'imagenSlider' => $imagenSlider,
+                'informacionPagina' => InformacionPaginaController::ConsultarInformacionPagina(),
+                'tipoHabitacion' => TipoHabitacionController::Consultar(),
+                'habitacion' => $habitacion->Consultar($request),
             ]);
     }
 }

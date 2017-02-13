@@ -244,7 +244,7 @@ class HabitacionController extends Controller
                     ->whereRaw("(s_habitacion.nombre like '%".$request->get('buscar')."%'
                                  OR s_habitacion.valor like '%".$request->get('buscar')."%'
                                  OR s_tipo_habitacion.nombre like '%".$request->get('buscar')."%')")
-                    ->where('s_habitacion.estado', '=', '1')
+                    ->orderBy('s_habitacion.estado', 'DESC')
                     ->orderBy('s_habitacion.nombre', 'ASC')
                     ->paginate($request->get('tamanhioPagina'));
             }
@@ -252,7 +252,7 @@ class HabitacionController extends Controller
 
                 $sql = Habitacion::select('s_habitacion.*','s_tipo_habitacion.nombre as tipo_habitacion')
                     ->join('s_tipo_habitacion','s_habitacion.id_tipo_habitacion','=','s_tipo_habitacion.id')
-                    ->where('s_habitacion.estado', '=', '1')
+                    ->orderBy('s_habitacion.estado', 'DESC')
                     ->orderBy('s_habitacion.nombre', 'ASC')
                     ->paginate($request->get('tamanhioPagina'));
             }

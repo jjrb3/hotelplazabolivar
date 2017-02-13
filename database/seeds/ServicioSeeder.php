@@ -32,7 +32,25 @@ class ServicioSeeder extends Seeder
         DB::table('s_servicio')->insert([
             'id' => 4,
             'nombre' => 'Aire Acondicionado',
-            'icono' => 'fa fa-snowflake-o',
+            'icono' => 'fa fa-bolt',
+            'estado' => 1,
+        ]);
+        DB::table('s_servicio')->insert([
+            'id' => 5,
+            'nombre' => '1 Cama',
+            'icono' => 'fa fa-bed',
+            'estado' => 1,
+        ]);
+        DB::table('s_servicio')->insert([
+            'id' => 6,
+            'nombre' => '2 Cama',
+            'icono' => 'fa fa-bed',
+            'estado' => 1,
+        ]);
+        DB::table('s_servicio')->insert([
+            'id' => 6,
+            'nombre' => '1 Baño',
+            'icono' => 'fa fa-trash-o',
             'estado' => 1,
         ]);
     }
