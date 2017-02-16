@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Habitacion;
 use App\Imagen;
+use App\HabitacionServicio;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 
@@ -247,6 +248,34 @@ class HabitacionController extends Controller
                     ->orderBy('s_habitacion.estado', 'DESC')
                     ->orderBy('s_habitacion.nombre', 'ASC')
                     ->paginate($request->get('tamanhioPagina'));
+            }
+            elseif ($request->get('tipoHabitacion')) {
+
+                $arreglo = array();
+
+                $sql = Habitacion::select('s_habitacion.*','s_tipo_habitacion.nombre as tipo_habitacion')
+                    ->join('s_tipo_habitacion','s_habitacion.id_tipo_habitacion','=','s_tipo_habitacion.id')
+                    ->orderBy('s_habitacion.nombre', 'ASC')
+                    ->where('s_tipo_habitacion.id','=',$request->get('tipoHabitacion'))->get()->toArray();
+
+                if ($sql) {
+                    foreach ($sql as $habitacion) {
+
+                        $imagen = Imagen::where('id_habitacion','=',$habitacion['id'])->get()->toArray();
+                        $servicio = HabitacionServicio::select('s_habitacion_servicio.*','s_servicio.nombre as servicio','s_servicio.icono as icono_servicio')
+                            ->join('s_servicio','s_habitacion_servicio.id_servicio','=','s_servicio.id')
+                            ->where('s_habitacion_servicio.id_habitacion', '=', $habitacion['id'])
+                            ->where('s_servicio.estado', '=', '1')
+                            ->orderBy('s_servicio.nombre', 'ASC')->get()->toArray();
+
+                        $arreglo['tipoHabitacion'] = $habitacion['tipo_habitacion'];
+                        $arreglo['habitacion'][$habitacion['id']] = $habitacion;
+                        $arreglo['imagenes'][$habitacion['id']] = $imagen;
+                        $arreglo['servicio'][$habitacion['id']] = $servicio;
+                    }
+                }
+
+                return array($arreglo);
             }
             else {
 

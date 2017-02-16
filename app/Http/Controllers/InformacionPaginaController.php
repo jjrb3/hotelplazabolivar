@@ -25,7 +25,7 @@ class InformacionPaginaController extends Controller
         $informacionPagina->direccion       = $request->get('direccion');
         $informacionPagina->ciudad          = $request->get('ciudad');
         $informacionPagina->nosotros        = $request->get('nosortos');
-        $informacionPagina->que_hacemos      = $request->get('queHacemos');
+        $informacionPagina->que_hacemos     = $request->get('queHacemos');
         $informacionPagina->mision          = $request->get('mision');
         $informacionPagina->vision          = $request->get('vision');
         $informacionPagina->valores         = $request->get('valores');

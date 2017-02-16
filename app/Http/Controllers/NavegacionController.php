@@ -10,9 +10,6 @@ use Illuminate\Support\Facades\Redirect;
 
 class NavegacionController extends Controller
 {
-    var $seleccion	= ' class="active" ';
-    var $menu 		= "";
-
     public function Administrador(Request $request,$carpeta,$pagina) {
 
         return !$request->session()->get('nombres') ? redirect('/inicio') : View("$carpeta.$pagina",
@@ -27,6 +24,7 @@ class NavegacionController extends Controller
     public function Usuario(Request $request,$pagina) {
 
         $imagenSlider = array();
+        $habitaciones = array();
 
         $directorio = opendir("recursos/imagen_slider");
 
@@ -40,12 +38,16 @@ class NavegacionController extends Controller
 
         $habitacion = new HabitacionController();
 
+        if ($request->get('tipoHabitacion')) {
+            $habitaciones = $habitacion->Consultar($request)[0];
+        }
+
         return View($pagina,
             [
                 'imagenSlider' => $imagenSlider,
                 'informacionPagina' => InformacionPaginaController::ConsultarInformacionPagina(),
                 'tipoHabitacion' => TipoHabitacionController::Consultar(),
-                'habitacion' => $habitacion->Consultar($request),
+                'habitaciones' => $habitaciones,
             ]);
     }
 }

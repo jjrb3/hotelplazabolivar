@@ -48,9 +48,15 @@ class ServicioSeeder extends Seeder
             'estado' => 1,
         ]);
         DB::table('s_servicio')->insert([
-            'id' => 6,
+            'id' => 7,
             'nombre' => '1 Baño',
             'icono' => 'fa fa-trash-o',
+            'estado' => 1,
+        ]);
+        DB::table('s_servicio')->insert([
+            'id' => 8,
+            'nombre' => 'Nevera',
+            'icono' => 'fa fa-inbox',
             'estado' => 1,
         ]);
     }
