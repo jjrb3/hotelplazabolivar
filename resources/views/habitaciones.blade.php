@@ -12,7 +12,7 @@
   <div class="container">
 
 
-    @if ($habitaciones)
+    @if (isset($habitaciones['habitacion']))
       @foreach ($habitaciones['habitacion'] as $listaHabitacion)
 
         <div class="card">
@@ -76,14 +76,17 @@
                 </p>
                 <div class="action">
                   <!-- <button  class="add-to-cart btn btn-default" type="button">Reservar </button>  -->
-                  <a href="" title="Online Reservation" class="btn btn-primary btn-normal btn-inline">Reservar</a>
-                  <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
+                  <a href="reserva?id={{$listaHabitacion['id']}}" title="Online Reservation" class="btn btn-primary btn-normal btn-inline">Reservar</a>
                 </div>
               </div>
             </div>
           </div>
         </div>
       @endforeach
+    @else
+        <br>
+        <br>
+          <div style="text-align: center;font-size: 22px">No se encontraron resultados para la busqueda...</div>
     @endif
 
   </div>

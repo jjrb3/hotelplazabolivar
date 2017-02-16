@@ -42,6 +42,7 @@ class NavegacionController extends Controller
             $habitaciones = $habitacion->Consultar($request)[0];
         }
 
+
         return View($pagina,
             [
                 'imagenSlider' => $imagenSlider,

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Habitacion;
 use App\Imagen;
 use App\HabitacionServicio;
+use App\TipoHabitacion;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 
@@ -253,6 +254,12 @@ class HabitacionController extends Controller
 
                 $arreglo = array();
 
+                $tipoHabitacion = TipoHabitacion::where('id','=',$request->get('tipoHabitacion'))->get()->toArray();
+
+                if ($tipoHabitacion) {
+                    $arreglo['tipoHabitacion'] = $tipoHabitacion[0]['nombre'];
+                }
+
                 $sql = Habitacion::select('s_habitacion.*','s_tipo_habitacion.nombre as tipo_habitacion')
                     ->join('s_tipo_habitacion','s_habitacion.id_tipo_habitacion','=','s_tipo_habitacion.id')
                     ->orderBy('s_habitacion.nombre', 'ASC')
@@ -268,7 +275,7 @@ class HabitacionController extends Controller
                             ->where('s_servicio.estado', '=', '1')
                             ->orderBy('s_servicio.nombre', 'ASC')->get()->toArray();
 
-                        $arreglo['tipoHabitacion'] = $habitacion['tipo_habitacion'];
+
                         $arreglo['habitacion'][$habitacion['id']] = $habitacion;
                         $arreglo['imagenes'][$habitacion['id']] = $imagen;
                         $arreglo['servicio'][$habitacion['id']] = $servicio;

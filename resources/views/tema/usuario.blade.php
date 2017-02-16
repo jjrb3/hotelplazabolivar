@@ -6,8 +6,8 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>Roah Single Page - Bootstrap Theme</title>
-
+	<title>Hotel Plaza Bolivar</title>
+	<link rel="icon" type="image/png" href="{{asset('tema/images/favicon.jpeg')}}" />
 	<!-- CSS includes -->
 	<link href="{{asset('tema/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet" type="text/css">
@@ -51,7 +51,7 @@
 			  <li><a href="nosotros">Nosotros</a></li>
 		  
 					<li class="dropdown">
-							<a class="dropdown-toggle" data-toggle="dropdown">Habitaciones<b class="caret"></b></a>
+							<a class="dropdown-toggle" data-toggle="dropdown" style="cursor:pointer;">Habitaciones<b class="caret"></b></a>
 							<ul class="dropdown-menu">
 								@foreach ($tipoHabitacion as $lista)
 									<li><a href="habitaciones?tipoHabitacion={{$lista['id']}}">{{$lista['nombre']}}</a></li>
