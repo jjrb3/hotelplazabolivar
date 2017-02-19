@@ -36,6 +36,10 @@ Route::get('/administrador/inicio',function(Request $request){
 });
 
 
+// Sesion de reserva
+Route::post('/administrador/reserva/inicio/existeReserva','ReservaController@ExisteReserva');
+Route::post('/administrador/reserva/inicio/guardar','ReservaController@Guardar');
+
 // Sesion de usuario
 Route::post('/administrador/usuario/inicio/buscar','UsuarioController@ConsultarUsuario');
 Route::post('/administrador/usuario/inicio/buscar/id','UsuarioController@ConsultarUsuarioId');

@@ -1,5 +1,39 @@
 var codigoMensaje = '';
 
+
+function _ajax(url,data,id) {
+
+    $.ajax({
+        url: url,
+        type: 'post',
+        data: data,
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+        },
+        dataType: 'json',
+        beforeSend: function(){
+            $('#'+id).html('<center><img src="' + $('#ruta').val() + 'tema/images/cargando.gif" width="50px"></center>');
+        },
+        success: function (data) {
+            switch (data.resultado) {
+                case 1:
+                    mensajeRealizado(id, data.mensaje);
+                    break;
+                case 0:
+                    mensajeAdvertencia(id, data.mensaje);
+                    break;
+                case -1:
+                    mensajeError(id, data.mensaje);
+                    break;
+            }
+        },
+        error: function(result) {
+            mensajeError(id, 'Se encontraron errores al momento de procesar la solicitud');
+        }
+    });
+}
+
+
 function validarCorreo(email) {
 
 	if (/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(email)){
