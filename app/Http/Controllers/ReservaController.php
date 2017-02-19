@@ -9,6 +9,80 @@ use Illuminate\Pagination\Paginator;
 
 class ReservaController extends Controller
 {
+    public function Consultar(Request $request)
+    {
+        $sql = 's_reserva.id > 0 ';
+
+        if ($request->get('buscar')) {
+
+            $sql .= " AND ( s_reserva.nombres LIKE '%{$request->get('buscar')}%' OR
+                            s_reserva.apellidos LIKE '%{$request->get('buscar')}%' OR
+                            s_habitacion.nombre LIKE '%{$request->get('buscar')}%')";
+        }
+
+        $currentPage = $request->get('pagina');
+
+        // Fuerza a estar en la pagina
+        Paginator::currentPageResolver(function() use ($currentPage) {
+            return $currentPage;
+        });
+
+        try {
+
+            $query = Reserva::select('s_reserva.*','s_habitacion.nombre as habitacion','s_habitacion.valor as valor','s_titulo.descripcion as titulo')
+                    ->join('s_habitacion','s_reserva.id_habitacion','=','s_habitacion.id')
+                    ->join('s_titulo','s_reserva.id_titulo','=','s_titulo.id')
+                    ->whereRaw("$sql")
+                    ->orderBy('s_reserva.fecha_inicio', 'DESC')
+                    ->paginate($request->get('tamanhioPagina'));
+
+            if (count($query)) {
+                return response()->json(array(
+                    'resultado' => 1,
+                    'mensaje'   => 'Se econtraron datos',
+                    'json'      => $query
+                ));
+            }
+            else {
+                return response()->json(array(
+                    'resultado' => 0,
+                    'mensaje'   => 'No se encontraron resultados para la consulta',
+                ));
+            }
+        }
+        catch (Exception $e) {
+            return response()->json(array(
+                'resultado' => -2,
+                'mensaje'   => 'Grave error: ' . $e,
+            ));
+        }
+    }
+
+    public function Eliminar(Request $request)
+    {
+        try {
+            if (Reserva::destroy($request->get('id'))) {
+                return response()->json(array(
+                    'resultado' => 1,
+                    'mensaje'   => 'Se eliminó la reserva correctamente',
+                ));
+            }
+            else {
+                return response()->json(array(
+                    'resultado' => 0,
+                    'mensaje'   => 'Se encontraron problemas al eliminar la reserva',
+                ));
+            }
+        }
+        catch (Exception $e) {
+            return response()->json(array(
+                'resultado' => -2,
+                'mensaje'   => 'Grave error: ' . $e,
+            ));
+        }
+    }
+
+
     public function ExisteReserva(Request $request)
     {
         try {

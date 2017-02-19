@@ -37,8 +37,10 @@ Route::get('/administrador/inicio',function(Request $request){
 
 
 // Sesion de reserva
+Route::post('/administrador/reserva/inicio/buscar','ReservaController@Consultar');
 Route::post('/administrador/reserva/inicio/existeReserva','ReservaController@ExisteReserva');
 Route::post('/administrador/reserva/inicio/guardar','ReservaController@Guardar');
+Route::post('/administrador/reserva/inicio/eliminar','ReservaController@Eliminar');
 
 // Sesion de usuario
 Route::post('/administrador/usuario/inicio/buscar','UsuarioController@ConsultarUsuario');

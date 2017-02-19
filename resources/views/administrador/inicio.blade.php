@@ -42,6 +42,14 @@
                         </div>
                     </div>
                 </a>
+
+                <a href="reserva/inicio">
+                    <div class="col-sm-4"> <div class="panel panel-red">
+                            <div class="panel-heading">RESERVAS</div>
+                            <div class="panel-body">Aquí podrá ver las reservas y eliminar estas</div>
+                        </div>
+                    </div>
+                </a>
             </div>
         </div>
     </div>

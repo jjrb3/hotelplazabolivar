@@ -122,26 +122,6 @@ function llenarDatos() {
             mensajeError("tabla", 'Se encontraron errores al momento de procesar la solicitud');
         }
     });
-        /*$.post('inicio/buscar/id',{id:$("#id").val()},function(data){
-
-            switch(data.resultado) {
-                case 1:
-                    $("#nombre").val(data.json[0].nombre);
-                    $("#contacto").val(data.json[0].contacto);
-                    $("#valor").val(data.json[0].valor);
-                    $("#direccion").val(data.json[0].direccion);
-                    $("#estado").val(data.json[0].id_estado_inmueble);
-                    $("#descripcion").val(data.json[0].descripcion);
-                    break;
-                case 0:
-                    mensajeAdvertencia("tabla", data.mensaje);
-                    break;
-                case -1:
-                    mensajeError("tabla", data.mensaje);
-                    break;
-            }
-        },'json');*/
-
 }
 
 
