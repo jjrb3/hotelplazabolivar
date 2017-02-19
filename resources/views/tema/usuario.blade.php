@@ -122,6 +122,7 @@
 	</div>
 </footer>
 
+<input type="hidden" id="ruta" value="{{asset('')}}">
 <script src="{{asset('tema/js/jquery.min.js')}}"></script>
 <script src="{{asset('tema/bootstrap/js/bootstrap.min.js')}}"></script>
 <script src="{{asset('tema/js/jquery.mixitup.min.js')}}"></script>
