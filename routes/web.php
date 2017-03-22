@@ -12,7 +12,7 @@
 */
 
 use Illuminate\Http\Request;
-//use App\Mail\EnvioContacto;
+use App\Mail\EnvioContacto;
 
 // Envio de correo
 Route::get('enviarCorreo', function () {
